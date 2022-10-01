@@ -1,25 +1,63 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+
+class App extends React.Component {
+
+  state={
+        FullName: "Adama Niang",
+        Bio:"Learning in Gomycode",
+        imgSrc:  <img src="79.jpeg" alt="" srcset="" />,
+        Profession: "Full-Stack developper",
+        Show: false,
+        count: 0,
+    }
+    componentDidMount() {
+        const intervalId = setInterval(() => {
+          this.setState(prevState => {
+            return {
+              count: prevState.count + 1,
+            };
+          });
+        }, 1000);
+      }
+
+    
+    booleanh =()=> this.setState({Show:!this.state.Show})
+
+
+    render (){
+    
+        if(this.state.Show===false){
+            return(
+                <>
+                
+                <div>
+                   <div>{this.state.imgSrc}</div> 
+                    <h2>Full Name:  {this.state.FullName}</h2>
+                    <h2>Bio:  {this.state.Bio}</h2>
+                    <h2>Profession: {this.state.Profession}</h2>
+                </div>
+                <h1>The component has been rendered for {this.state.count} seconds</h1>
+                <button onClick={this.booleanh}>Hide</button>
+    
+                </>
+              
+              
+               )
+        }
+        else{
+            return(
+                <>
+                       <button onClick={this.booleanh}>Show</button>
+                </>
+ 
+            )
+        }
+    
+    }
 }
+
+
 
 export default App;
